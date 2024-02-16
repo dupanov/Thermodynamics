@@ -1,0 +1,31 @@
+% PV diagram - isotherm
+\def\N{40}
+\begin{tikzpicture}[midarr/.style={decoration={markings,mark=at position #1 with {\arrow{stealth}}},postaction={decorate}},
+  midarr/.default=0.5]
+\def\xmax{6}
+\def\ymax{5}
+%  \def\isotherm{(A) to[out=-60,in=170] (B)}
+  \def\T{4}
+  \def\xa{.2*\xmax}
+  \def\xb{.8*\xmax}
+  \def\ya{{\T/(\xa)}}
+  \def\yb{{\T/(\xb)}}
+
+  % AREA
+  \coordinate (A) at (\xa,\ya);
+  \coordinate (B) at (\xb,\yb);
+  \fill[blue!20,samples=\N,domain=\xa:\xb]
+    plot(\x,{\T/\x}) --  (B|-0,0) -- node[above=5pt, text=black] {$A$} (A|-0,0) -- cycle;
+
+
+  % LINE
+  \draw[red!80!black,very thick,midarr=.58,samples=\N,domain={\xa}:{\xb}]
+    plot(\x,{\T/\x});
+  \fill (A) circle (2pt) node[above] {$P_1$, $V_1$};
+  \fill (B) circle (2pt) node[right] {$P_2$, $V_2$};
+
+  % AXIS
+  \draw[->,thick] (0,-0.1*\ymax) -- (0,\ymax) node[anchor=north east] {$P$};
+  \draw[->,thick] (-0.1*\xmax,0) -- (\xmax,0) node[anchor=north east] {$V$};
+
+\end{tikzpicture}

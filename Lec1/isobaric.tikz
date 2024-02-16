@@ -1,0 +1,21 @@
+\begin{tikzpicture}[midarr/.style={decoration={markings,mark=at position #1 with {\arrow{stealth}}},postaction={decorate}},
+  midarr/.default=0.5]
+  \def\xmax{6}
+  \def\ymax{5}
+
+  % AREA
+  \coordinate (A) at (.2*\xmax,.8*\ymax);
+  \coordinate (B) at (.8*\xmax,.8*\ymax);
+  \coordinate (C) at (.8*\xmax,.2*\ymax);
+  \fill[blue!20] (A) rectangle (C|-0,0) node[midway,blue] {$A$};
+
+  % LINE
+  \draw[very thick,midarr=.55,red!80!black] (A) -- (B);
+  \fill (A) circle (2pt) node[above] {$P_1$, $V_1$};
+  \fill (B) circle (2pt) node[above] {$P_2$, $V_2$};
+
+  % AXIS
+  \draw[->,thick] (0,-0.1*\ymax) -- (0,\ymax) node[anchor=north east] {$P$};
+  \draw[->,thick] (-0.1*\xmax,0) -- (\xmax,0) node[anchor=north east] {$V$};
+
+\end{tikzpicture}
